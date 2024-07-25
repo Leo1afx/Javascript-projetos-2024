@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de notas escolares</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    
+</head>
+<body>
+    <main>
+        <section>
+            <div class="section_top">
+                <h2>Sistema de lançamento de notas</h2>
+                
+                <div class="icon"><i class="fa-solid fa-pen-to-square"></i></div>
+            </div>
+            <div class="sistema_corpo">
+                <form action="">
+                    <label for="primeiro_nome">Primeiro nome:</label>
+                    <input type="text" name="primeiro_nome" id="primeiro_nome" maxlength="52"> <br>
+                   <label for="sobrenome">Sobrenome:</label>
+                  <input type="text" name="sobrenome" id="sobrenome" maxlength="80"> <br>
+                  <label for="primeira_nota">Primeira nota:</label>
+                  <input type="number" name="primeira_nota" id="primeira_nota"><br>
+                    <label for="segunda_nota">Segunda nota:</label>
+                   <br> <input type="number" name="segunda_nota" id="segunda_nota"><br>
+                    <div class="botoes">
+                        <input class="botao" type="button" value="Resultado">
+                        <input class="botao" type="reset" value="Limpar">
+                    </div>
+
+                    <label for="nome_completo">Aluno:</label>
+                    <input type="text" name="nome_completo" id="nome_completo" maxlength="42">
+                    
+
+                    <label for="bloco_resposta_1"></label>
+                    <input type="text" name="bloco_resposta_1" id="bloco_resposta_1" maxlength="">
+
+                    <label for="bloco_resposta_2"></label>
+                    <input type="text" name="bloco_resposta_2" id="bloco_resposta_2" maxlength="">
+
+
+                </form>
+               
+            </div>
+        </section>
+    </main>
+
+    <script>
+        var primeiro_nome = document.getElementById('primeiro_nome')
+        var sobrenome = document.getElementById('sobrenome')
+        var primeira_nota = document.getElementById('primeira_nota')
+        var segunda_nota = document.getElementById('segunda_nota')
+        var botao = document.getElementsByClassName('botao')[0]
+        
+        var nome_completo = document.getElementById('nome_completo')
+        
+
+        botao.addEventListener('click', clicar)
+
+        function clicar(){
+           
+            var primeiro_nome_1 = primeiro_nome.value
+            var sobrenome_1 = sobrenome.value
+            var primeira_nota_1 = Number(primeira_nota.value)
+            var segunda_nota_1 = Number(segunda_nota.value)
+            var res = (primeira_nota_1 + segunda_nota_1) / 2
+           
+
+            if(primeira_nota_1 == "" || segunda_nota_1 == "" || primeiro_nome_1 == "" || sobrenome_1 == ""){
+              
+                document.getElementById('bloco_resposta_2').value = `Por favor, digite os dados`
+            }else if( res <6 ){
+                document.getElementById('nome_completo').value = `${primeiro_nome_1} ${sobrenome_1}`               
+                document.getElementById('bloco_resposta_1').value = `Olá, ${primeiro_nome_1}, sua média é: ${res}`              
+                document.getElementById('bloco_resposta_2').value = `Reprovado`
+                               
+            }else if(res>=6 && res<10){               
+
+                document.getElementById('nome_completo').value = `${primeiro_nome_1} ${sobrenome_1}`                
+                document.getElementById('bloco_resposta_1').value = `Olá, ${primeiro_nome_1}, sua média é: ${res}`                
+                document.getElementById('bloco_resposta_2').value = `Aprovado, parabéns!`
+               
+            }else if(res==10){              
+                document.getElementById('nome_completo').value = `${primeiro_nome_1} ${sobrenome_1}`
+                document.getElementById('bloco_resposta_1').value = `Olá, ${primeiro_nome_1}, sua média é: ${res}`
+                document.getElementById('bloco_resposta_2').value = `Acima da média, parabéns!`
+               
+            }else{
+             document.getElementById('nome_completo').value = ""
+             document.getElementById('bloco_resposta_1').value = ` Não é possível calcular a média.`
+                document.getElementById('bloco_resposta_2').value = `Nota inválida`
+            }
+
+        }
+
+    </script>
+</body>
+</html>
